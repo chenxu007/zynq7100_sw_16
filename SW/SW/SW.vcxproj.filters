@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\code\FCSW_Mgr\Cfg\FCSW.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\Diag\FCSW_DIAG_PortPepair.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\Diag\FCSW_DIAG_PortStatistics.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\Func\FCSW_FuncMgr.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\Port\FCSW_PortMgr.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\Reg\FCSW_REG_AXI.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\Reg\FCSW_REG_LocalBus.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\Buf\PBuf.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\FCSW_CheckFrame.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\FCSW_RS.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\FCSW_RS_Client.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\FCSW_RS_PRTL.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\Cmd\FCSW_RS_PRTL_CMD_CtrlCmd.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\Cmd\FCSW_RS_PRTL_CMD_QuaryParam.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\Cmd\FCSW_RS_PRTL_CMD_RegRW.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\Cmd\FCSW_RS_PRTL_CMD_Request.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FCSW_Mgr\RS\Cmd\FCSW_RS_PRTL_CMD_FileTrans.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\code\FCSW_Mgr\Cfg\FCSW.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\FCSW_Mgr\RS\Buf\AppBuf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\FCSW_Mgr\RS\FCSW_CheckFrame.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\FCSW_Mgr\Diag\FCSW_DIAG.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\FCSW_Mgr\Func\FCSW_FuncMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\FCSW_Mgr\Port\FCSW_PortMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\FCSW_Mgr\Reg\FCSW_REG.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\FCSW_Mgr\RS\FCSW_RS_PRTL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\FCSW_Mgr\RS\Buf\PBuf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
