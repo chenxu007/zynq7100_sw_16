@@ -69,7 +69,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\work\BinHong\Projects\FC_LY_SW_48\src\zynq7100_sw_16\VSProj\SW\code;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\code\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
