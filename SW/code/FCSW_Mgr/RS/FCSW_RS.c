@@ -4,7 +4,7 @@
 
 CheckFrameCB *RS_CheckFrame;
 void FCSW_RS_Init(void);
-void FCSW_RS_Send(AppBuf * appBuf);
+FCSW_STATUS FCSW_RS_Send(AppBuf * appBuf);
 void FCSW_RS_Read(AppBuf * appBuf);
 
 void FCSW_RS_CheckFrame(ChanType chanType, u8 *buf, u32 len);
@@ -15,7 +15,8 @@ void FCSW_RS_Init(void)
     RS_CheckFrame = CheckFrameInit();
 
 }
-void FCSW_RS_Send(AppBuf * appBuf)
+
+FCSW_STATUS FCSW_RS_Send(AppBuf * appBuf)
 {
 #ifdef WORK_IN_PC
     FCSW_RS_Client_Send(appBuf);
@@ -26,7 +27,7 @@ void FCSW_RS_Send(AppBuf * appBuf)
 
 }
 
-void FCSW_RS_Recv(AppBuf * appBuf)
+FCSW_STATUS FCSW_RS_Recv(AppBuf * appBuf)
 {
 #ifdef WORK_IN_PC
 		FCSW_RS_Client_Recv(appBuf);

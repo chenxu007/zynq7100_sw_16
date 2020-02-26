@@ -3,11 +3,11 @@
 #include "FCSW_Mgr\RS\Buf\AppBuf.h"
 #include "FCSW_Mgr\Reg\FCSW_REG.h"
 #include "FCSW_Mgr\Rte\FCSW_RouteMgr.h"
+#include "FCSW_Mgr\Inc\FCSW_Debug.h"
+
 
 #ifdef WORK_IN_BOARD
 #include <vxWorks.h>
-
-
 #include <stdlib.h>
 #endif
 
@@ -15,22 +15,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define BOARD_PC_Recv 
+#include <winsock2.h>
 #endif
 
 
 FCSW_STRU* sw_dev;
 
-
+#ifdef WORK_IN_PC
+FCSW_STRU* FCSW_Dev_Init(struct in_addr server_addr, int port_num)
+#else
 FCSW_STRU* FCSW_Dev_Init(void)
+#endif
 {
 #ifdef WORK_IN_PC
     FCSW_STRU     *sw_dev;
 
 	sw_dev = malloc(sizeof(FCSW_STRU));
-    
-    strncpy_s(sw_dev->swipv4, sizeof(sw_dev->swipv4), SW_IPV4, sizeof(SW_IPV4));
-	sw_dev->swport = SW_IP_PORT;
+    FCSW_ASSERT(sw_dev != NULL);    
+    memset(sw_dev, 0, sizeof(FCSW_STRU));
+
+    if (0 != FCSW_RS_Client_Init(server_addr, port_num))
+    {
+        free(sw_dev);
+        return NULL;
+    }
 
 	return sw_dev;
 
@@ -1930,7 +1938,7 @@ FCSW_STATUS FCSW_Query_SW_Info(u32 addr, u32 *value,  FCSW_STRU *sw_dev)
 	
 	PBUF_ALLOC(ppbuffer);
 
-	if(FCSW_OK != BOARD_PC_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
+	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -2029,7 +2037,7 @@ FCSW_STATUS FCSW_Query_SW_Config(u32 addr, u32 *value,  FCSW_STRU *sw_dev)
 	
 	PBUF_ALLOC(ppbuffer);
 
-	if(FCSW_OK != BOARD_PC_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
+	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -2126,7 +2134,7 @@ FCSW_STATUS FCSW_Query_Port_Config(u32 addr, u32 *value,  FCSW_STRU *sw_dev)
 	
 	PBUF_ALLOC(ppbuffer);
 
-	if(FCSW_OK != BOARD_PC_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
+	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -2195,9 +2203,7 @@ FCSW_STATUS FCSW_Query_Port_Error(u32 addr, u32 *value, FCSW_STRU *sw_dev)
 	PBuf * ppbuffer;
 	u8	chanType;
 	u32 evalue;
-	u8	afn,fn;
-	
-	
+	u8	afn,fn;		
 	
 	chanType = sw_dev->sw_prtl_path;
 	
@@ -2214,23 +2220,15 @@ FCSW_STATUS FCSW_Query_Port_Error(u32 addr, u32 *value, FCSW_STRU *sw_dev)
 	appBuf.pbuf->payLoad[appBuf.pbuf->len++] = (u8)((addr >> 16) & 0x000000FF);
 	appBuf.pbuf->payLoad[appBuf.pbuf->len++] = (u8)((addr >> 24) & 0x000000FF); 
 	
-	FCSW_RS_PRTL_DO(&appBuf);
+	FCSW_RS_PRTL_DO(&appBuf);    
 	
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-	
-	
-	
-	PBUF_ALLOC(ppbuffer);
-	
-	if(FCSW_OK != BOARD_PC_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
 		appBuf.pbuf = NULL;
 		return(FCSW_ERROR);
 	}
-	
 	
 	
 	afn = *(u8 *)(ppbuffer->payLoad+ 4);
@@ -2312,9 +2310,7 @@ FCSW_STATUS FCSW_Query_ConfigMode(FCSW_CTRL *mode, FCSW_STRU *sw_dev)
 	FCSW_RS_PRTL_DO(&appBuf);
 
 	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
+	appBuf.pbuf = NULL;	
 	
 	PBUF_ALLOC(ppbuffer);
 
@@ -2325,8 +2321,6 @@ FCSW_STATUS FCSW_Query_ConfigMode(FCSW_CTRL *mode, FCSW_STRU *sw_dev)
 		appBuf.pbuf = NULL;
 		return FCSW_ERROR;
 	}			
-
-	
 
 	afn = *(u8 *)(ppbuffer->payLoad+ 4);
 	fn = *(u8 *)(ppbuffer->payLoad+ 6); 
