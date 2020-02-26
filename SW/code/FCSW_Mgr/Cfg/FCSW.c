@@ -194,13 +194,7 @@ FCSW_STATUS FCSW_Reg_Read(u32 addr, u32 *value, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -293,13 +287,7 @@ FCSW_STATUS FCSW_Reg_Write(u32 addr, u32 value, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -374,21 +362,13 @@ FCSW_STATUS FCSW_Reg_Read_Virtual(u32 addr, u32 *value, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
 		appBuf.pbuf = NULL;
 		return FCSW_ERROR;
 	}			
-
-	
 
 	afn = *(u8 *)(ppbuffer->payLoad+ 4);
 	fn = *(u8 *)(ppbuffer->payLoad+ 6); 
@@ -468,13 +448,7 @@ FCSW_STATUS FCSW_Reg_Write_Virtual(u32 addr, u32 value, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -544,12 +518,7 @@ FCSW_STATUS FCSW_WriteReg_bit(u32 addr, u32 value, u32 validmask, FCSW_STRU *sw_
 	
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -618,12 +587,7 @@ FCSW_STATUS FCSW_RTE_Config_Single(u8 inPort, u8 outPort, u32 did, FCSW_STRU *sw
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -745,12 +709,7 @@ FCSW_STATUS FCSW_RTE_Config_Multi(u8 inPort, u32 outPortMask0, u32 outPortMask1,
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -851,12 +810,7 @@ FCSW_STATUS FCSW_RTE_Config_BroadCast(u8 inPort, u32 did, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -962,12 +916,7 @@ FCSW_STATUS FCSW_RTE_Delete_FPort_Num(u8 inPort, u8 serial, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1054,12 +1003,7 @@ FCSW_STATUS FCSW_RTE_Delete_Single_FPort_Did(u8 inPort, u32 did, FCSW_STRU *sw_d
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1143,13 +1087,8 @@ FCSW_STATUS FCSW_RTE_Delete_Multi_FPort_Did(u8 inPort, u32 did, FCSW_STRU *sw_de
 	appBuf.pbuf->payLoad[appBuf.pbuf->len++] = (u8)((did >> 24) & 0x000000FF); 
 
 	FCSW_RS_PRTL_DO(&appBuf);
-
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+    
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1234,12 +1173,7 @@ FCSW_STATUS FCSW_RTE_Delete_BroadCast_FPort_Did(u8 inPort, u32 did, FCSW_STRU *s
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1321,12 +1255,7 @@ FCSW_STATUS FCSW_RTE_Delete_FPort(u8 inPort, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1401,12 +1330,7 @@ FCSW_STATUS FCSW_RTE_Delete_AllF(FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1481,14 +1405,7 @@ FCSW_STATUS FCSW_Config_MON(u8 mode, u8 port, u8 enable, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1589,14 +1506,7 @@ FCSW_STATUS FCSW_Config_MON_msg(u8 inPort, u32 msgid, u8 msgidnum, FCSW_STRU *sw
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1687,14 +1597,7 @@ FCSW_STATUS FCSW_Config_SYNC_sever(u16 gap, u32 set0, u32 set1, FCSW_STRU *sw_de
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1780,14 +1683,7 @@ FCSW_STATUS FCSW_Config_SYNC_client(u8 port, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1861,14 +1757,7 @@ FCSW_STATUS FCSW_Set_ConfigMode(FCSW_CTRL mode, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -1931,14 +1820,7 @@ FCSW_STATUS FCSW_Query_SW_Info(u32 addr, u32 *value,  FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -2030,14 +1912,7 @@ FCSW_STATUS FCSW_Query_SW_Config(u32 addr, u32 *value,  FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -2129,12 +2004,7 @@ FCSW_STATUS FCSW_Query_Port_Config(u32 addr, u32 *value,  FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad, sw_dev, FCSW_RECVTIMEOUT))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -2309,12 +2179,7 @@ FCSW_STATUS FCSW_Query_ConfigMode(FCSW_CTRL *mode, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;	
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);
@@ -2372,14 +2237,7 @@ FCSW_STATUS FCSW_Query_SYNC_Count(u32 *get0, u32 *get1, FCSW_STRU *sw_dev)
 
 	FCSW_RS_PRTL_DO(&appBuf);
 
-	PBUF_FREE(ppbuffer);
-	appBuf.pbuf = NULL;
-
-	
-	
-	PBUF_ALLOC(ppbuffer);
-
-	if(FCSW_OK != FCSW_RS_Recv(ppbuffer->payLoad))
+	if(FCSW_OK != FCSW_RS_Recv(&appBuf))
 	{
 		FCSW_printf("Recieve frame error\n");
 		PBUF_FREE(ppbuffer);

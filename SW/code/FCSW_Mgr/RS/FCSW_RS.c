@@ -19,10 +19,10 @@ void FCSW_RS_Init(void)
 FCSW_STATUS FCSW_RS_Send(AppBuf * appBuf)
 {
 #ifdef WORK_IN_PC
-    FCSW_RS_Client_Send(appBuf);
+    return FCSW_RS_Client_Send(appBuf);
 #endif
 #ifdef WORK_IN_BOARD
-    FCSW_RS_Server_Send(appBuf);
+    return FCSW_RS_Server_Send(appBuf);
 #endif
 
 }
@@ -30,7 +30,7 @@ FCSW_STATUS FCSW_RS_Send(AppBuf * appBuf)
 FCSW_STATUS FCSW_RS_Recv(AppBuf * appBuf)
 {
 #ifdef WORK_IN_PC
-		FCSW_RS_Client_Recv(appBuf);
+    return FCSW_RS_Client_Recv(appBuf);
 #endif
 
 }
